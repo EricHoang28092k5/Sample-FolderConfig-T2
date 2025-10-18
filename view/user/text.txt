@@ -1,3 +1,4 @@
+SignUp.php
 <!DOCTYPE html>
 <html>
 <head>
@@ -477,20 +478,9 @@ function updateHuyen() {
 </form>
 </div>
 
-
-
-<?php 
-if (isset($_GET['none'])): ?>
+<?php if (isset($_GET['useroremailtaken'])): ?>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    showSignUpSuccessModal("Đăng ký thành công! Chào mừng bạn đến với DMTD FOOD 🎉");
-  });
-</script>
-<?php endif; ?>
-
-<?php 
-if (isset($_GET['useroremailtaken'])): ?>
-<script>
+  // Gọi modal hiển thị lỗi khi người dùng đăng ký trùng email/tên đăng nhập
   document.addEventListener("DOMContentLoaded", function() {
     showSignUpErrorModal("Tên đăng nhập hoặc email đã tồn tại. Vui lòng thử lại!");
   });
@@ -498,18 +488,8 @@ if (isset($_GET['useroremailtaken'])): ?>
 <?php endif; ?>
 
 <script>
-// === MODAL THÔNG BÁO LỖI ===
+// === HÀM HIỂN THỊ MODAL LỖI ĐĂNG KÝ ===
 function showSignUpErrorModal(message) {
-  createModal(message, "signUp.php", "Thử lại");
-}
-
-// === MODAL THÔNG BÁO THÀNH CÔNG ===
-function showSignUpSuccessModal(message) {
-  createModal(message, "Home.php", "Trang chủ");
-}
-
-// === HÀM TẠO MODAL DÙNG CHUNG ===
-function createModal(message, linkHref, linkText) {
   const modalContainer = document.createElement("div");
   modalContainer.id = "modal-container";
 
@@ -521,7 +501,7 @@ function createModal(message, linkHref, linkText) {
       </div>
       <div class="modal_body">
         <p>${message}</p>
-        <a href="${linkHref}">${linkText}</a>
+        <a href="signUp.php">Thử lại</a>
       </div>
     </div>
   `;
@@ -535,11 +515,15 @@ function createModal(message, linkHref, linkText) {
 
   btnClose.addEventListener("click", function () {
     modalContainer.classList.remove("show");
-    setTimeout(() => document.body.removeChild(modalContainer), 300);
+    setTimeout(() => {
+      document.body.removeChild(modalContainer);
+    }, 300);
   });
 
   modalContainer.addEventListener("click", function (e) {
-    if (!modalDemo.contains(e.target)) btnClose.click();
+    if (!modalDemo.contains(e.target)) {
+      btnClose.click();
+    }
   });
 
   // === THÊM CSS CHO MODAL (nếu chưa có) ===
@@ -547,32 +531,44 @@ function createModal(message, linkHref, linkText) {
     const style = document.createElement("style");
     style.id = "modal-style";
     style.textContent = `
-      * { box-sizing: border-box; }
-      body { font-family: Arial, Helvetica, sans-serif; line-height: 1.3; }
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.3;
+      }
 
       #modal-container {
         height: 100vh;
         background-color: rgb(0, 0, 0, 0.5);
         position: fixed;
-        top: 0; left: 0;
+        top: 0;
+        left: 0;
         width: 100%;
         opacity: 0;
         pointer-events: none;
         z-index: 1000;
       }
-      #modal-container.show { opacity: 1; pointer-events: all; }
+
+      #modal-container.show {
+        opacity: 1;
+        pointer-events: all;
+      }
 
       .modal {
-        background-color: #fff;
+        background-color: #ffff;
         max-width: 500px;
         position: relative;
-        left: 50%; top: 100px;
+        left: 50%;
+        top: 100px;
         transform: translateX(-50%);
-        border-radius: 10px;
       }
 
       .modal .modal_header {
         display: flex;
+        position: relative;
         justify-content: space-between;
         align-items: center;
         padding: 15px 20px;
@@ -586,20 +582,27 @@ function createModal(message, linkHref, linkText) {
       }
 
       button#btn-close {
-        width: 30px; height: 30px;
+        width: 30px;
+        height: 30px;
         border: none;
         font-size: 20px;
         color: white;
+        align-items: center;
         background-color: #f37319;
         border-radius: 20px;
         cursor: pointer;
         position: absolute;
-        top: -5px; right: -5px;
+        top: -5px;
+        right: -5px;
       }
 
-      .modal .modal_body { padding: 10px 20px 15px; }
+      .modal .modal_body {
+        padding: 10px 20px 15px;
+      }
 
-      .modal_body p { text-align: center; }
+      .modal_body p {
+        text-align: center;
+      }
 
       .modal_body a {
         text-decoration: none;
@@ -618,6 +621,6 @@ function createModal(message, linkHref, linkText) {
 }
 </script>
 
-
 </body>
 </html>
+

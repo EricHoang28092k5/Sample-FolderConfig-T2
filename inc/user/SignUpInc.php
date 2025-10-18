@@ -13,5 +13,6 @@ if(isset($_POST['signUp'])){
 
     $signUp = new SignUpContr($tenNguoiDung, $tenDangNhap, $email, $password, $sdt, $diaChi, $quan_huyen, $phuong_xa);
     $signUp->signUpUser();
+    header("Location: /web/view/user/SignUp.php?none");
   }   
 ?>

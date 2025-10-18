@@ -21,7 +21,7 @@ class SignUpContr extends SignUpClass{
         $this->phuong_xa = $phuong_xa;
 
     }
-
+    
     public function signUpUser(){
         if(!$this->checkUser($this->email,$this->tenDangNhap)){
             header("Location: /web/view/user/signUp.php?useroremailtaken");
