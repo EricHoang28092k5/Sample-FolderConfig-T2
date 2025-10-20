@@ -34,13 +34,13 @@ if(!isset($_SESSION['giohang'])){
     $_SESSION['giohang']=[];
 }
 
-if(isset($_GET['act'])){
-    echo 'XIN CHAO';
-    switch($_GET['act']){
-        case 'cart':
+// if(isset($_GET['act'])){
+//     echo 'XIN CHAO';
+//     switch($_GET['act']){
+//         case 'cart':
 
-    }
-}else{
+//     }
+// }else{
     require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
-}
+// }
 ?>
