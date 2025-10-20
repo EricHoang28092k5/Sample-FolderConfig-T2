@@ -33,14 +33,12 @@
     <a href="SignUp.php">Đăng ký</a>
   </div>
 
-  <a href="Home.php" class="back">Quay lại</a>
+  <a href="/web/index.php" class="back">Quay lại</a>
 </form>
 </div>
 
 <?php 
 // ==== HIỂN THỊ MODAL KHI CÓ THAM SỐ ERROR TRÊN URL ====
-
-
 if (isset($_GET['error'])) {
     $errorType = $_GET['error'];
     echo '<script>

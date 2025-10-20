@@ -473,7 +473,7 @@ function updateHuyen() {
     <a href="SignIn.php">Đăng nhập</a>
   </div>
 
-  <a href="../controller/index.php" class="back">Quay lại</a>
+  <a href="/web/index.php" class="back">Quay lại</a>
 </form>
 </div>
 

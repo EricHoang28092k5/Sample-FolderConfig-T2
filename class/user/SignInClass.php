@@ -35,6 +35,7 @@ class SignInClass extends DatabaseClass {
             $_SESSION['tenNguoiDung'] = $row['tenNguoiDung'];
             $_SESSION['tenDangNhap'] = $row['tenDangNhap'];
             $_SESSION['email'] = $row['email'];
+            $_SESSION['password'] = $row['password'];
             $_SESSION['sdt'] = $row['sdt'];
             $_SESSION['diaChi'] = $row['diaChi'];
             $_SESSION['quan_huyen'] = $row['quan_huyen'];
@@ -42,14 +43,30 @@ class SignInClass extends DatabaseClass {
 
             // Chuyển hướng tùy vai trò
             if ($row['vaiTro'] === 'admin') {
-                header("Location: /web/view/admin/Home.php");
+                header("Location: /web/view/admin/index.php");
             } else {
-                header("Location: /web/view/user/Home.php");
+                header("Location: /web/index.php");
             }
             exit();
         }
 
         $stmt->close();
+    }
+
+    protected function kiemTraTrangThaiTaiKhoan($tenDangNhap){
+        $trangThai;
+        $conn = $this->connect();
+        $result = $conn->query("SELECT TrangThai FROM nguoidung WHERE tenDangNhap ='$tenDangNhap'");
+        
+        if($result && $result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            $trangThai = (int)$row["TrangThai"];
+        }else{
+            die("Lỗi truy vấn SQL:" . $conn->error);
+            exit();
+        }
+
+        return $trangThai;
     }
 }
 ?>

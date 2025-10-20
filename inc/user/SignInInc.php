@@ -7,6 +7,5 @@ if(isset($_POST['signIn'])){
 
     $signIn = new SignInContr($tenDangNhap,$password);
     $signIn->signInUser();
-    
 }
 ?>

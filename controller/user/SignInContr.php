@@ -12,5 +12,9 @@ class SignInContr extends SignInClass{
     public function signInUser(){
         $this->getUser($this->tenDangNhap, $this->password);
     }
+
+    public function kiemTraQuyenTruyCap(){
+        return $result = $this->kiemTraTrangThaiTaiKhoan($this->tenDangNhap);
+    }
 }    
 ?>
