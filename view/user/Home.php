@@ -1,46 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="view/user/css/Home.css"/>
-    <link
-      rel="shortcut icon"
-      href="view/img/DMTD-Food-Logo.jpg"
-      type="image/x-icon"
-    />
-    <title>DMTD FOOD</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="view/user/css/Home.css"/>
+  <link rel="shortcut icon" href="view/img/DMTD-Food-Logo.jpg" type="image/x-icon"/>
+  <title>DMTD FOOD</title>
 </head>
 <body>
-    <!-- NHÚNG HEADER -->
-    <?php 
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Header.php"; 
-    ?>
 
-    <div class="banner">
+  <!-- HEADER -->
+  <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Header.php"; ?>
+
+
+  <!-- BANNER -->
+  <div class="banner">
     <img src="view/img/banner.png" alt="banner">
   </div>
 
-
-<section>
+  <section>
     <div id="wrapper">
-        <div class="headline">
-            <div class="section-title">Khám phá thực đơn của chúng tôi</div>
-            <div class="header-underline"></div>
-        </div>
-   
-<!-- PHẦN CỦA DƯƠNG -->
+      <div class="headline">
+        <div class="section-title">Khám phá thực đơn của chúng tôi</div>
+        <div class="header-underline"></div>
+      </div>
 
-<!-- HIỆN SẢN PHẨM -->
-<ul class="products">
-    <?php
-    require_once "controller/user/ProductContr.php"; 
-    $products = new ProductContr();
-    $productList = $products->showAllProducts();
-    if(!empty($productList)): 
-    ?>
+      <!-- DANH SÁCH SẢN PHẨM -->
+     <ul class="products">
+    <?php if(!empty($productList)): ?>
         <?php foreach ($productList as $product): ?>
             <div class="products-item">
                 <li>
@@ -71,8 +60,12 @@
         <p>Không có sản phẩm nào!</p>
     <?php endif; ?>
 </ul>
-    <?php 
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Footer.php"; 
-    ?>
+
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Pagination.php"; ?>
+
+
+  <!-- FOOTER -->
+  <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Footer.php"; ?>
+
 </body>
 </html>
