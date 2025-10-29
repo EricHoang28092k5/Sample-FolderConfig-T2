@@ -12,7 +12,6 @@ class ProductClass extends DataBaseClass {
     public function getProductsByPage($keyword, $maLoaiSP, $minPrice, $maxPrice, $limit, $offset) {
         $conn = $this->connect();
 
-        // Tạo câu SQL cơ bản
         $sql = "SELECT * FROM sanpham WHERE DonGia BETWEEN $minPrice AND $maxPrice";
 
         if (!empty($keyword)) {
@@ -54,5 +53,7 @@ class ProductClass extends DataBaseClass {
         $row = $result->fetch_assoc();
         return $row['total'];
     }
+
+    
 }
 ?>

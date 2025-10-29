@@ -26,5 +26,16 @@ class ProductContr extends ProductClass {
     public function countProducts($keyword, $maLoaiSP, $minPrice, $maxPrice) {
         return parent::countProducts($keyword, $maLoaiSP, $minPrice, $maxPrice);
     }
+
+    public function getProductByID($id){
+        $conn = $this->connect();
+        $id= intval($id);
+        $sql="SELECT * FROM sanpham WHERE MaSP= $id";
+        $result= mysqli_query($conn,$sql);
+        if($result && mysqli_num_rows($result)>0){
+            return mysqli_fetch_assoc($result);
+        }
+        return null;
+    }
 }
 ?>
