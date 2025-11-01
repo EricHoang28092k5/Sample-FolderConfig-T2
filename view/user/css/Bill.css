@@ -1,0 +1,140 @@
+/* Main Bill Page Styling */
+.bill-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+  font-family: "Arial", sans-serif;
+}
+
+.page-title {
+  color: #f37419;
+  text-align: center;
+  margin: 30px 0;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Table Styling */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.order-table th {
+  background-color: rgba(243, 116, 25, 0.88);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.order-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 14px;
+}
+
+.order-table tr:hover {
+  background-color: rgba(243, 116, 25, 0.1);
+}
+
+/* Order number link styling */
+.order-link {
+  color: #f37419;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.order-link:hover {
+  text-decoration: underline;
+}
+
+/* Empty order styling */
+.empty-row td {
+  padding: 30px;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* Button Styling */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.shop-button {
+  padding: 12px 24px;
+  background-color: #f37419;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.shop-button:hover {
+  background-color: #ff8c3a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Status color coding */
+.status-pending {
+  color: #ffaa00;
+  font-weight: bold;
+}
+
+.status-confirmed {
+  color: #2196f3;
+  font-weight: bold;
+}
+
+.status-delivered {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .order-table th,
+  .order-table td {
+    padding: 10px 5px;
+    font-size: 12px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  /* Stack table on mobile */
+  .order-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .shop-button {
+    width: 100%;
+  }
+}

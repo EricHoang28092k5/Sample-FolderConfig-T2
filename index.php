@@ -30,17 +30,38 @@ if($isLoggedIn){
     }
 }
 
-if(!isset($_SESSION['giohang'])){
-    $_SESSION['giohang']=[];
-}
+if(isset($_GET['act'])){
+    switch($_GET['act']){
+        case 'home':
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
+            break;
+                    
+        case 'notSignIn':
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
+            break;
+    
+        case 'addToCartSuccess':
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
+            break;
 
-// if(isset($_GET['act'])){
-//     echo 'XIN CHAO';
-//     switch($_GET['act']){
-//         case 'cart':
+        case 'viewCart':
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Cart.php";
+            break;
 
-//     }
-// }else{
+        case 'checkOrder':
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/CheckOrder.php";
+            break;
+
+        case "payMentSuccess":
+            unset($_SESSION['giohang']);
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/OrderSuccess.php";
+            break;
+        
+        case "viewBill":
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Bill.php";
+            break;
+    }
+}else{
     require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
-// }
+}
 ?>

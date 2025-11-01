@@ -1,5 +1,6 @@
 <?php
-$tenDangNhap = '';
+$tenDangNhap = "";
+$isLoggedIn = isset($_SESSION['tenDangNhap']);
 
 if(isset($isLoggedIn) && $isLoggedIn){
   $tenDangNhap = $_SESSION['tenDangNhap']; 
@@ -12,8 +13,7 @@ if(isset($isLoggedIn) && $isLoggedIn){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <!-- Đường dẫn theo file index.php -->
-    <link rel="stylesheet" href="view/user/css/Header.css" /> 
+    <link rel="stylesheet" href="/web/view/user/css/Header.css" /> 
     <title>DMTD FOOD</title>
 </head>
 <body>
@@ -24,7 +24,7 @@ if(isset($isLoggedIn) && $isLoggedIn){
     <header class="header-top">
       <div class="container">
       <div class="logo">
-  <a href="#" class="logo-img"><img height="70" src="view/img/DMTD-Food-Logo.jpg" alt="Logo"/></a>
+  <a href="#" class="logo-img"><img height="70" src="/web/view/img/DMTD-Food-Logo.jpg" alt="Logo"/></a>
   <span><b>DMTD FOOD</b></span>
 </div>
 
@@ -91,10 +91,10 @@ if(isset($isLoggedIn) && $isLoggedIn){
                   <a href="../view/info.php">Thông tin cá nhân</a>
                 </li>
                 <li class="heder_item_user">
-                  <a href="../controller/index.php?act=xemhoadon">Xem hóa đơn</a>
+                  <a href="/web/index.php?act=viewBill">Xem hóa đơn</a>
                 </li>
                 <li class="heder_item_user">
-                  <a href="LogOut.php">Đăng xuất</a>
+                  <a href="/web/view/user/LogOut.php">Đăng xuất</a>
                 </li>
               <?php else: ?>
                 <li class="heder_item_user">
@@ -107,7 +107,7 @@ if(isset($isLoggedIn) && $isLoggedIn){
             </ul>
           </div>
           <div class="item">
-            <a href="Cart.php"
+            <a href="/web/index.php?act=viewCart"
               ><i class="fa-solid fa-cart-shopping"></i
             ></a>
           </div>
