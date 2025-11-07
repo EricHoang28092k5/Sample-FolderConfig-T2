@@ -69,98 +69,147 @@
         <p>Không có sản phẩm nào!</p>
     <?php endif; ?>
 </ul>
-<?php
-if (isset($_GET['act'])) {
-    $act = $_GET['act'];
-    
-    echo '<script>';
-    echo 'document.addEventListener("DOMContentLoaded", function() {';
-    
-    switch ($act) {
-        case 'addToCartSuccess':
-            // KHÔNG CÓ LINK: Chỉ cần thông báo và nút OK
-            echo 'showCartSuccessModal("Sản phẩm đã được thêm vào giỏ hàng thành công!");';
-            // Xóa tham số khỏi URL sau khi hiển thị modal để ngăn modal hiện lại khi F5
-            echo 'window.history.replaceState({}, document.title, "/web/index.php");'; 
-            break;
 
-        case 'notSignIn':
-            // CÓ LINK: Hiện thông báo và nút chuyển hướng Đăng nhập
-            echo 'showNotSignedInModal("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!");';
-            echo 'window.history.replaceState({}, document.title, "/web/index.php");';
+<?php 
+if (isset($_GET['act'])){
+    $typeAct = $_GET['act'];
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {';    
+    switch($typeAct){
+        case "notSignIn":
+            echo 'showNotSignInModal("Vui lòng đăng nhập để thêm giỏ hàng");';
             break;
+        case "addToCartSuccess":
+           echo 'showAddToCartModal("Thêm món ăn thành công");';
+           break;
     }
-
-    echo '});';
-    echo '</script>';
+    echo '});
+    </script>';    
 }
 ?>
+
+
 <script>
+// === MODAL THÔNG BÁO LỖI ĐĂNG NHẬP ===
+function showNotSignInModal(message) {
+  createModal(message, "/web/view/user/SignIn.php", "Đăng nhập");
+}
+
+function showAddToCartModal(message) {
+  createModal(message, "/web/index.php?act=viewCart", "Xem giỏ hàng");
+}
+
+// === HÀM TẠO MODAL DÙNG CHUNG ===
 function createModal(message, linkHref, linkText) {
-    const modalContainer = document.createElement("div");
-    modalContainer.id = "modal-container";
-    
-    const hasLink = linkHref && linkText;
+  const modalContainer = document.createElement("div");
+  modalContainer.id = "modal-container";
 
-    // Sửa HTML: Sử dụng nút OK khi không có link
-    modalContainer.innerHTML = `
-      <div class="modal" id="modal-demo">
-        <div class="modal_header">
-          <h3>Thông báo</h3>
-          <button id="btn-close">&times;</button>
-        </div>
-        <div class="modal_body">
-          <p>${message}</p>
-          ${hasLink 
-            ? `<a href="${linkHref}">${linkText}</a>` 
-            : `<button id="btn-close-body" class="modal-ok-button">OK</button>` 
-          }
-        </div>
+  modalContainer.innerHTML = `
+    <div class="modal" id="modal-demo">
+      <div class="modal_header">
+        <h3>Thông báo</h3>
+        <button id="btn-close"><i class="fa-solid fa-xmark"></i></button>
       </div>
-    `;
+      <div class="modal_body">
+        <p>${message}</p>
+        <a href="${linkHref}">${linkText}</a>
+      </div>
+    </div>
+  `;
 
-    document.body.appendChild(modalContainer);
+  document.body.appendChild(modalContainer);
 
-    const btnClose = document.getElementById("btn-close");
-    const modalDemo = document.getElementById("modal-demo");
-    const btnCloseBody = document.getElementById("btn-close-body");
+  const btnClose = document.getElementById("btn-close");
+  const modalDemo = document.getElementById("modal-demo");
 
-    // Thêm class show và xử lý đóng
-    setTimeout(() => modalContainer.classList.add("show"), 10); 
+  modalContainer.classList.add("show");
 
-    const closeHandler = () => {
-        modalContainer.classList.remove("show");
-        setTimeout(() => {
-            if (document.body.contains(modalContainer)) {
-                document.body.removeChild(modalContainer);
-            }
-        }, 300);
-    };
+  btnClose.addEventListener("click", function () {
+    modalContainer.classList.remove("show");
+    setTimeout(() => document.body.removeChild(modalContainer), 300);
+  });
 
-    btnClose.addEventListener("click", closeHandler);
-    if (btnCloseBody) {
-        btnCloseBody.addEventListener("click", closeHandler);
-    }
-    
-    modalContainer.addEventListener("click", function (e) {
-      if (e.target === modalContainer) {
-          closeHandler();
+  modalContainer.addEventListener("click", function (e) {
+    if (!modalDemo.contains(e.target)) btnClose.click();
+  });
+
+  // === THÊM CSS CHO MODAL (nếu chưa có) ===
+  if (!document.getElementById("modal-style")) {
+    const style = document.createElement("style");
+    style.id = "modal-style";
+    style.textContent = `
+      * { box-sizing: border-box; }
+      body { font-family: Arial, Helvetica, sans-serif; line-height: 1.3; }
+
+      #modal-container {
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1000;
       }
-    });
-}
+      #modal-container.show { opacity: 1; pointer-events: all; }
 
-// === CÁC HÀM GỌI CỤ THỂ ===
+      .modal {
+        background-color: #fff;
+        max-width: 500px;
+        position: relative;
+        left: 50%; top: 100px;
+        transform: translateX(-50%);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
 
-// 1. Trường hợp: Thêm giỏ hàng thành công (KHÔNG CÓ LINK)
-function showCartSuccessModal(message) {
-    createModal(message, null, null);
-}
+      .modal .modal_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid gray;
+      }
 
-// 2. Trường hợp: Yêu cầu đăng nhập (CÓ LINK)
-function showNotSignedInModal(message) {
-    createModal(message, "/web/view/user/SignIn.php", "Đăng nhập ngay");
+      .modal_header h3 {
+        margin: 0;
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      button#btn-close {
+        width: 30px; height: 30px;
+        border: none;
+        font-size: 20px;
+        color: white;
+        background-color: #f37319;
+        border-radius: 20px;
+        cursor: pointer;
+        position: absolute;
+        top: -5px; right: -5px;
+      }
+
+      .modal .modal_body { padding: 10px 20px 15px; }
+
+      .modal_body p { text-align: center; }
+
+      .modal_body a {
+        text-decoration: none;
+        background: #f37319;
+        color: #fff;
+        display: block;
+        padding: 5px 15px;
+        text-align: center;
+        margin: 10px auto;
+        width: fit-content;
+        border-radius: 10px;
+      }
+    `;
+    document.head.appendChild(style);
+  }
 }
 </script>
+
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Footer.php"; ?>
 </body>
