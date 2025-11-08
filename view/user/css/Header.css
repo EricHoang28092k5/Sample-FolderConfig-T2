@@ -1,0 +1,746 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header-banner {
+  width: 100%;
+  height: 50px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  background: #f37319;
+  position: sticky;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: white;
+  font-size: 20px;
+}
+
+header {
+  background-color: white;
+}
+
+.container {
+  max-width: 1130px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+#header-top {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+}
+
+.header-top .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.header-top .logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-top .logo span {
+  font-size: 19px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.header-top .logo img {
+  flex-shrink: 0;
+}
+
+/* PHẦN CỦA DŨNG */
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: flex;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border-radius: 30px;
+  align-items: center;
+}
+
+.box input {
+  width: 400px;
+  background-color: #f0f0f0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+}
+
+.box a {
+  color: black;
+  font-size: 18px;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn i {
+  font-size: 18px;
+  color: #333;
+}
+
+.search-btn:focus {
+  outline: none;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.advanced-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  z-index: 1001;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 40px;
+  cursor: pointer;
+  color: #888;
+}
+
+.advanced-popup form input[type="text"],
+.advanced-popup form select {
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Tăng kích thước cho nút tìm kiếm */
+.advanced-popup form button[type="submit"] {
+  font-size: 18px; /* Tăng kích thước font chữ */
+  padding: 12px 20px; /* Tăng kích thước nút */
+  border-radius: 5px; /* Bo góc cho nút */
+  cursor: pointer;
+  background-color: #f37319;
+  color: white;
+  border: none;
+}
+
+/* Tăng kích thước cho label */
+.advanced-popup form label {
+  font-size: 18px; /* Tăng kích thước font chữ của nhãn */
+  font-weight: bold; /* Đậm chữ cho nhãn */
+}
+
+/* Đảm bảo khoảng cách hợp lý giữa các phần tử */
+.advanced-popup form {
+  gap: 20px; /* Thêm khoảng cách giữa các phần tử */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ex  */
+.product-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1001;
+  width: 90%;
+  max-width: 800px; /* Tăng kích thước tối đa */
+  max-height: 90vh; /* Giới hạn chiều cao tối đa */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+.product-popup .popup-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1001;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+.product-popup .popup-content {
+  position: relative;
+}
+
+.product-popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  background-color: #f37319;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1002; /* Đảm bảo nút đóng luôn ở trên cùng */
+}
+
+.product-popup .close-btn:hover {
+  background-color: #d65a00;
+  transform: scale(1.1);
+}
+
+.product-popup .close-btn:focus {
+  outline: none;
+}
+.product-popup img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-popup h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.product-popup p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.product-popup .product-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f37319;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.product-popup form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.product-popup form label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-popup form input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-popup form input[type="submit"] {
+  background-color: #f37319;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-popup form input[type="submit"]:hover {
+  background-color: #d65a00;
+}
+
+#product-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation for popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.product-popup img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-popup h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.product-popup p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.product-popup .product-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f37319;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.product-popup form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.product-popup form label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-popup form input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-popup form input[type="submit"] {
+  background-color: #f37319;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-popup form input[type="submit"]:hover {
+  background-color: #d65a00;
+}
+
+#product-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation for popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  font-family: "Roboto", "Segoe UI", sans-serif;
+}
+
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+}
+
+.success-icon {
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.modal-message {
+  color: #5d6778;
+  margin-bottom: 25px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modal-action {
+  margin-top: 5px;
+}
+
+.close-button {
+  background-color: #f37319;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(243, 115, 25, 0.3);
+}
+
+.close-button:hover {
+  background-color: #e06410;
+  box-shadow: 0 4px 12px rgba(243, 115, 25, 0.4);
+}
+
+.action .item {
+  position: relative;
+  display: inline-block;
+  margin-right: 15px; /* Add some space between icons */
+}
+/* =======================*/
+
+/* PHẦN CỦA DƯƠNG */
+/* Enhance the user icon and text to be more visible */
+.action .item > a {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Highlight on hover to show it's interactive */
+.action .item > a:hover {
+  color: #f37319; /* Change text color instead of background */
+}
+
+/* Hide dropdown by default */
+.action .item .item_menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 180px; /* Wider dropdown for better readability */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+  border-radius: 8px;
+  padding: 8px 0;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  border: 1px solid #eaeaea;
+}
+
+/* Show dropdown on hover with improved trigger area */
+.action .item:hover .item_menu {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Create a small invisible area to prevent dropdown from closing too easily */
+.action .item .item_menu::after {
+  content: "";
+  position: absolute;
+  top: -20px; /* Create an invisible area above the dropdown */
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+
+/* Remove default list styling */
+.action .item_menu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style menu links for better visibility and interaction */
+.action .item_menu li a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* More visible hover effect for menu items */
+.action .item_menu li a:hover {
+  color: #f37319;
+  padding-left: 20px; /* Slight indent on hover */
+}
+
+/* Add a small arrow to indicate dropdown */
+.action .item:has(.fa-regular.fa-user) > a::after {
+  content: "";
+  display: inline-block;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #333;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate arrow when dropdown is visible */
+.action .item:hover > a::after {
+  transform: rotate(180deg);
+}
+
+/* User name styling if logged in */
+.action .item span {
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Add a triangle pointer to the dropdown */
+.action .item_menu::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+/* Animation for dropdown appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure the cart icon has similar styling for consistency */
+.action .item:has(.fa-cart-shopping) > a {
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.action .item:has(.fa-cart-shopping) > a:hover {
+  color: #f37319; /* Change text color instead of background */
+}
+
+/* PHẦN CỦA DŨNG */
+/* Navigation */
+nav {
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #ccc;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 10px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: var(--orange);
+  border-bottom: 2px solid var(--orange);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  #header-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #header-top .box {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  #header-top .action {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 17px;
+  transition: 0.1s;
+}
+
+nav ul li a::after {
+  content: "";
+  width: 100%;
+  opacity: 0;
+  height: 2px;
+  background: var(--orange);
+  display: block;
+  transition: 0.2s linear;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+nav ul li a:hover {
+  color: #f37319;
+}
+/* ====================== */
