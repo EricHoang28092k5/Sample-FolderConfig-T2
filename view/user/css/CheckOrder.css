@@ -1,0 +1,300 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  padding: 30px 15px;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #F37319;
+}
+
+/* Form styles */
+.info-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.info-table th, 
+.info-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.info-table tr:last-child th,
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.info-table th {
+  background-color: #eee;
+  text-align: left;
+  width: 30%;
+  font-weight: 600;
+  color: back;
+}
+
+/* Form inputs */
+input[type="text"], 
+input[type="email"],
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+/* Remove orange border on focus */
+input[type="text"]:focus, 
+input[type="email"]:focus,
+select:focus {
+  outline: none;
+  background-color: #f9f9f9;
+}
+
+input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 30px;
+}
+
+.input-container {
+  position: relative;
+}
+
+/* Cart review section */
+.cart-review {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.cart-review h2 {
+  margin-top: 20px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden; 
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.cart-table th {
+  background-color: #F37319;
+  color: #fff;
+  padding: 15px 10px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.cart-table td {
+  padding: 15px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+  vertical-align: middle;
+}
+
+.cart-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cart-table img {
+  border-radius: 5px;
+  max-width: 80px;
+  height: auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Total row styling */
+.cart-table tr:last-child {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.cart-table tr:last-child td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* Buttons */
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  align-items: center;
+}
+
+.back-btn {
+  background-color: #757575;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+/* Removed hover effect for back button */
+
+input[type="submit"] {
+  background-color: #F37319;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #d66214;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .info-table th,
+  .info-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  .info-table th {
+    padding-bottom: 5px;
+    border-bottom: none;
+  }
+  
+  .cart-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .cart-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .back-btn,
+  input[type="submit"] {
+    width: 100%;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+}
+
+/* Removed focus outline styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* Animation for buttons */
+.back-btn,
+input[type="submit"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.back-btn:after,
+input[type="submit"]:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.back-btn:focus:not(:active)::after,
+input[type="submit"]:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+/* Additional accent color elements */
+::selection {
+  background-color: rgba(243, 115, 25, 0.2);
+}

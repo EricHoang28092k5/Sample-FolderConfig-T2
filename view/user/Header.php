@@ -1,38 +1,36 @@
-  <?php
-  $tenDangNhap = '';
+<?php
+$tenDangNhap = "";
+$isLoggedIn = isset($_SESSION['tenDangNhap']);
 
-  if (isset($isLoggedIn) && $isLoggedIn) {
-    $tenDangNhap = $_SESSION['tenDangNhap'];
-  }
+if(isset($isLoggedIn) && $isLoggedIn){
+  $tenDangNhap = $_SESSION['tenDangNhap']; 
+}
 
-  $maLoaiSP = isset($maLoaiSP) ? $maLoaiSP : 0;
-  $min_price = isset($min_price) ? $min_price : 0;
-  $max_price = isset($max_price) ? $max_price : 500000;
-  ?>
-
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+$maLoaiSP = isset($maLoaiSP) ? $maLoaiSP : 0;
+$min_price = isset($min_price) ? $min_price : 0;
+$max_price = isset($max_price) ? $max_price : 500000;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="view/user/css/Header.css" />
-    <link rel="stylesheet" href="view/user/css/Home.css" /> 
+    <link rel="stylesheet" href="/web/view/user/css/Header.css" /> 
     <title>DMTD FOOD</title>
-  </head>
-  <body>
+</head>
+<body>
 
-  <div class="header-banner">60 phút - Giao ngay tận nơi</div>
+<div class="header-banner">60 phút - Giao ngay tận nơi</div>
 
-  <header class="header-top">
-    <div class="container">
+<!-- header  -->
+    <header class="header-top">
+      <div class="container">
       <div class="logo">
-        <a href="#" class="logo-img">
-          <img height="70" src="view/img/DMTD-Food-Logo.jpg" alt="Logo"/>
-        </a>
-        <span><b>DMTD FOOD</b></span>
-      </div>
+  <a href="#" class="logo-img"><img height="70" src="/web/view/img/DMTD-Food-Logo.jpg" alt="Logo"/></a>
+  <span><b>DMTD FOOD</b></span>
+</div>
 
       <!-- FORM TÌM KIẾM -->
       <form id="product-search" method="GET">
@@ -84,30 +82,43 @@
         </div>
       </div>
 
-      <div class="action">
-        <div class="item">
-          <a href="#"><i class="fa-regular fa-user"></i></a>
-          <?php if (isset($isLoggedIn) && $isLoggedIn): ?>
-            <span><?= htmlspecialchars($tenDangNhap) ?></span>
-          <?php endif; ?>
-          <ul class="item_menu">
-            <?php if (isset($isLoggedIn) && $isLoggedIn): ?>
-              <li><a href="../view/info.php">Thông tin cá nhân</a></li>
-              <li><a href="../controller/index.php?act=xemhoadon">Xem hóa đơn</a></li>
-              <li><a href="LogOut.php">Đăng xuất</a></li>
-            <?php else: ?>
-              <li><a href="view/user/SignIn.php">Đăng nhập</a></li>
-              <li><a href="view/user/SignUp.php">Đăng ký</a></li>
+ <!-- PHẦN CỦA DƯƠNG -->
+<div class="action">
+          <div class="item">
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <?php if(isset($isLoggedIn) && $isLoggedIn): ?>
+              <span><?php echo $tenDangNhap; ?></span>
             <?php endif; ?>
-          </ul>
-        </div>
-
-        <div class="item">
-          <a href="Cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+            <ul class="item_menu">
+              <?php if(isset($isLoggedIn) && $isLoggedIn): ?>
+                <li class="heder_item_user">
+                  <a href="../view/info.php">Thông tin cá nhân</a>
+                </li>
+                <li class="heder_item_user">
+                  <a href="/web/index.php?act=viewBill">Xem hóa đơn</a>
+                </li>
+                <li class="heder_item_user">
+                  <a href="/web/view/user/LogOut.php">Đăng xuất</a>
+                </li>
+              <?php else: ?>
+                <li class="heder_item_user">
+                  <a href="view/user/SignIn.php">Đăng nhập</a>
+                </li>
+                <li class="heder_item_user">
+                  <a href="view/user/SignUp.php">Đăng ký</a>
+                </li>
+              <?php endif; ?>
+            </ul>
+          </div>
+          <div class="item">
+            <a href="/web/index.php?act=viewCart"
+              ><i class="fa-solid fa-cart-shopping"></i
+            ></a>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+
   <nav>
     <ul>
   <li><a href="/web/index.php">Trang chủ</a></li>
@@ -137,3 +148,6 @@
         `Từ ${Number(min).toLocaleString()} đ đến ${Number(max).toLocaleString()} đ`;
     }
   </script>
+</script>
+
+

@@ -1,0 +1,270 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.success-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f37319;
+}
+
+.success-icon {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.success-icon .checkmark {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: #00a550;
+  border-radius: 50%;
+  color: white;
+  font-size: 40px;
+}
+
+.success-message {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.success-message h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  font-size: 16px;
+  color: #666;
+}
+
+.order-details {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-section {
+  margin-bottom: 20px;
+}
+
+.order-section h2 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.info-item {
+  margin-bottom: 15px;
+}
+
+.info-item .label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.info-item .value {
+  color: #333;
+}
+
+.order-summary {
+  margin-top: 30px;
+}
+
+.order-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.order-summary-table th {
+  background-color: #f9f9f9;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.order-summary-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-summary-table .product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.order-summary-table .product-name {
+  font-weight: 500;
+}
+
+.order-total {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.order-total .total-label {
+  margin-right: 15px;
+}
+
+.order-total .total-value {
+  color: red;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #00a550;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #008442;
+}
+
+.btn-print {
+  margin-right: 15px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-print:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-home {
+  background-color: #f37319;
+}
+
+.btn-home:hover {
+  background-color: #d66214;
+}
+
+.btn-detail {
+  background-color: #4a90e2;
+  margin-right: 15px;
+}
+
+.btn-detail:hover {
+  background-color: #3a7bc8;
+}
+
+.bank-info {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #f37319;
+  margin-top: 15px;
+}
+
+.bank-info h3 {
+  color: #f37319;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.bank-info-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.bank-info-label {
+  font-weight: bold;
+  width: 150px;
+  color: #555;
+}
+
+.bank-info-value {
+  font-weight: 500;
+}
+
+.payment-note {
+  margin-top: 10px;
+  color: #e74c3c;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .bank-info-item {
+    flex-direction: column;
+  }
+
+  .bank-info-label {
+    width: 100%;
+    margin-bottom: 3px;
+  }
+}

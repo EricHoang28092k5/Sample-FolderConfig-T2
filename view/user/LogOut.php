@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['giohang']);
 unset($_SESSION['tenNguoiDung']);
 unset($_SESSION['tenDangNhap']);
 unset($_SESSION['email']);
