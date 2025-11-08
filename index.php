@@ -2,15 +2,17 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/class/DataBaseClass.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/SignInContr.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/ProductContr.php";
 
+// Kiểm tra đăng nhập
 $isLoggedIn = isset($_SESSION['tenDangNhap']);
-
 if($isLoggedIn){
     $vaiTro = $_SESSION['role'];
     if($vaiTro == "admin"){
         session_destroy();
         header("location: /web/view/admin/index.php");
-    }else{
+        exit();
+    } else {
         $tenNguoiDung = $_SESSION['tenNguoiDung'];
         $tenDangNhap = $_SESSION['tenDangNhap']; 
         $email = $_SESSION['email']; 
@@ -20,9 +22,8 @@ if($isLoggedIn){
         $quan_huyen = $_SESSION['quan_huyen'];
         $phuong_xa = $_SESSION['phuong_xa'];
 
-        $checkStatus = new SignInContr($tenDangNhap,$email);
+        $checkStatus = new SignInContr($tenDangNhap, $email);
         $trangThai = $checkStatus->kiemTraQuyenTruyCap();
-
         if($trangThai == 2){
             header("Location:/web/view/user/LogOut.php");
             exit();
@@ -31,16 +32,29 @@ if($isLoggedIn){
 }
 
 if(!isset($_SESSION['giohang'])){
-    $_SESSION['giohang']=[];
+    $_SESSION['giohang'] = [];
 }
 
-// if(isset($_GET['act'])){
-//     echo 'XIN CHAO';
-//     switch($_GET['act']){
-//         case 'cart':
 
-//     }
-// }else{
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
-// }
-?>
+$productController = new ProductContr();
+$productList = $productController->showAllProducts();
+
+require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/ProductContr.php";
+$productController = new ProductContr();
+
+$item_perpage = !empty($_GET['per_page']) ? intval($_GET['per_page']) : 8;
+$current_page = !empty($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($current_page - 1) * $item_perpage;
+
+$search = $_GET['search'] ?? '';
+$maLoaiSP = $_GET['MaLoaiSP'] ?? 0;
+$min_price = $_GET['min_price'] ?? 0;
+$max_price = $_GET['max_price'] ?? 100000000;
+
+$totalProducts = $productController->countProducts($search, $maLoaiSP, $min_price, $max_price);
+$totalPages = ceil($totalProducts / $item_perpage);
+
+$productList = $productController->getProductsByPage($search, $maLoaiSP, $min_price, $max_price, $item_perpage, $offset);
+
+require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";
+
