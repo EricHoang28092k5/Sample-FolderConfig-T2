@@ -5,7 +5,7 @@ if(isset($_POST['addcart'])){
     $tenSP = $_POST['tensp'];
     $gia = $_POST['gia'];
     $hinh = $_POST['hinh'];
-    $soluong = isset($_POST['soluong']) ? $_POST['soluong'] : 1;
+    $soluong = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
 
     require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/CartContr.php";
     $cart = new CartContr();

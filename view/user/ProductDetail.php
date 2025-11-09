@@ -16,7 +16,7 @@ if (isset($_GET['product_id'])) {
                 <div class="product-price">
                     Giá: <span class="price"><?= number_format($product['DonGia'], 0, ',', '.') ?> đ</span>
                 </div>
-                <form action="/web/view/user/Cart.php" method="post">
+                <form action="/web/inc/user/CartInc.php" method="post">
                     <input type="hidden" name="id" value="<?= $product['MaSP'] ?>">
                     <input type="hidden" name="tensp" value="<?= htmlspecialchars($product['TenSP']) ?>">
                     <input type="hidden" name="gia" value="<?= $product['DonGia'] ?>">

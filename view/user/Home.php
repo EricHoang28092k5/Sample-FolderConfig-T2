@@ -22,53 +22,47 @@
   </div>
 
 
-<section>
+  <section>
     <div id="wrapper">
-        <div class="headline">
-            <div class="section-title">Khám phá thực đơn của chúng tôi</div>
-            <div class="header-underline"></div>
-        </div>
-   
-<!-- PHẦN CỦA DƯƠNG -->
+      <div class="headline">
+        <div class="section-title">Khám phá thực đơn của chúng tôi</div>
+        <div class="header-underline"></div>
+      </div>
 
-<!-- HIỆN SẢN PHẨM -->
-<ul class="products">
-    <?php
-    require_once "controller/user/ProductContr.php"; 
-    $products = new ProductContr();
-    $productList = $products->showAllProducts();
-    if(!empty($productList)): 
-    ?>
-        <?php foreach ($productList as $product): ?>
+      <!-- DANH SÁCH SẢN PHẨM -->
+      <ul class="products">
+        <?php if(!empty($productList)): ?>
+          <?php foreach ($productList as $product): ?>
             <div class="products-item">
-                <li>
-                    <div class="product-top">
-                        <a href="javascript:void(0)" class="product-thumb" onclick="openProductDetail(<?= $product['MaSP'] ?>)">
-                            <img src="view/img/product/<?= htmlspecialchars($product['HinhAnh']) ?>" alt="<?= htmlspecialchars($product['TenSP']) ?>">
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href="javascript:void(0)" class="product-name" onclick="openProductDetail(<?= $product['MaSP'] ?>)">
-                            <?= htmlspecialchars($product['TenSP']) ?>
-                        </a>
-                        <div class="product-price">
-                            <span class="price"><?= number_format($product['DonGia'], 0, ',', '.') ?><span class="currency">đ</span></span>
-                        </div>
-                        <form action="/web/inc/user/CartInc.php" method="post">
-                            <input type="hidden" name="id" value="<?= $product['MaSP'] ?>">
-                            <input type="hidden" name="tensp" value="<?= htmlspecialchars($product['TenSP']) ?>">
-                            <input type="hidden" name="gia" value="<?= $product['DonGia'] ?>">
-                            <input type="hidden" name="hinh" value="<?= htmlspecialchars($product['HinhAnh']) ?>">
-                            <input type="submit" name="addcart" value="Đặt hàng">
-                        </form>
-                    </div>
-                </li>
+              <li>
+                <div class="product-top">
+                  <!-- 🟢 onclick gọi đúng tên hàm showProductDetail -->
+                  <a href="javascript:void(0)" class="product-thumb" onclick="showProductDetail(<?= $product['MaSP'] ?>)">
+                    <img src="view/img/product/<?= htmlspecialchars($product['HinhAnh']) ?>" alt="<?= htmlspecialchars($product['TenSP']) ?>">
+                  </a>
+                </div>
+                <div class="product-info">
+                  <a href="javascript:void(0)" class="product-name" onclick="showProductDetail(<?= $product['MaSP'] ?>)">
+                    <?= htmlspecialchars($product['TenSP']) ?>
+                  </a>
+                  <div class="product-price">
+                    <span class="price"><?= number_format($product['DonGia'], 0, ',', '.') ?><span class="currency">đ</span></span>
+                  </div>
+                  <form action="/web/inc/user/CartInc.php" method="post">
+                    <input type="hidden" name="id" value="<?= $product['MaSP'] ?>">
+                    <input type="hidden" name="tensp" value="<?= htmlspecialchars($product['TenSP']) ?>">
+                    <input type="hidden" name="gia" value="<?= $product['DonGia'] ?>">
+                    <input type="hidden" name="hinh" value="<?= htmlspecialchars($product['HinhAnh']) ?>">
+                    <input type="submit" name="addcart" value="Đặt hàng">
+                  </form>
+                </div>
+              </li>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Không có sản phẩm nào!</p>
-    <?php endif; ?>
-</ul>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>Không có sản phẩm nào!</p>
+        <?php endif; ?>
+      </ul>
 
       <!-- Popup hiển thị chi tiết sản phẩm -->
       <div id="product-detail-popup" class="product-popup">
@@ -86,27 +80,9 @@
     </div>
   </section>
 
+
   <!-- FOOTER -->
   <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Footer.php"; ?>
-
-
-  <!-- 🟢 SCRIPT: load chi tiết sản phẩm bằng fetch -->
-  <script>
-  function showProductDetail(productId) {
-      fetch(`/web/view/user/ProductDetail.php?product_id=${productId}`)
-          .then(response => response.text())
-          .then(data => {
-              document.getElementById("product-detail-content").innerHTML = data;
-              document.getElementById("product-detail-popup").style.display = "block";
-              document.getElementById("product-overlay").style.display = "block";
-          });
-  }
-
-  function closeProductDetail() {
-      document.getElementById("product-detail-popup").style.display = "none";
-      document.getElementById("product-overlay").style.display = "none";
-  }
-  </script>
 
 
 <?php 
@@ -129,6 +105,21 @@ if (isset($_GET['act'])){
 
 
 <script>
+function showProductDetail(productId) {
+      fetch(`/web/view/user/ProductDetail.php?product_id=${productId}`)
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById("product-detail-content").innerHTML = data;
+              document.getElementById("product-detail-popup").style.display = "block";
+              document.getElementById("product-overlay").style.display = "block";
+          });
+  }
+
+  function closeProductDetail() {
+      document.getElementById("product-detail-popup").style.display = "none";
+      document.getElementById("product-overlay").style.display = "none";
+  }
+
 // === MODAL THÔNG BÁO LỖI ĐĂNG NHẬP ===
 function showNotSignInModal(message) {
   createModal(message, "/web/view/user/SignIn.php", "Đăng nhập");
@@ -248,8 +239,5 @@ function createModal(message, linkHref, linkText) {
   }
 }
 </script>
-
-
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Footer.php"; ?>
 </body>
 </html>

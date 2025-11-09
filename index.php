@@ -81,6 +81,10 @@ if(isset($_GET['act'])){
         case "viewBill":
             require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Bill.php";
             break;
+
+        case "viewInfo":
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Info.php";
+            break;            
     }
 }else{
     require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Home.php";

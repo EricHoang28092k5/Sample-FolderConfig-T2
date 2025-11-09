@@ -92,7 +92,7 @@ $max_price = isset($max_price) ? $max_price : 500000;
             <ul class="item_menu">
               <?php if(isset($isLoggedIn) && $isLoggedIn): ?>
                 <li class="heder_item_user">
-                  <a href="../view/info.php">Thông tin cá nhân</a>
+                  <a href="/web/index.php?act=viewInfo.php">Thông tin cá nhân</a>
                 </li>
                 <li class="heder_item_user">
                   <a href="/web/index.php?act=viewBill">Xem hóa đơn</a>
