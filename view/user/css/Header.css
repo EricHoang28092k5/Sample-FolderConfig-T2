@@ -202,7 +202,7 @@ header {
   max-height: 90vh; /* Giới hạn chiều cao tối đa */
   overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-in-out;
+  /* animation: fadeIn 0.3s ease-in-out; */
   font-family: Arial, sans-serif;
 }
 
@@ -225,7 +225,7 @@ header {
   width: 90%;
   max-width: 600px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-in-out;
+  /* animation: fadeIn 0.3s ease-in-out; */
   font-family: Arial, sans-serif;
 }
 
@@ -341,17 +341,7 @@ header {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Animation for popup */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  /* animation: fadeIn 0.3s ease-in-out; */
 }
 
 .product-popup img {
@@ -432,17 +422,7 @@ header {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Animation for popup */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  /* animation: fadeIn 0.3s ease-in-out; */
 }
 
 .modal-overlay {
@@ -744,3 +724,13 @@ nav ul li a:hover {
   color: #f37319;
 }
 /* ====================== */
+.product-popup img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
